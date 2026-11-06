@@ -23,21 +23,29 @@ RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
 # Get Composer
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
+# Create non-root user (UID 1000) for compatibility with cloud sandboxes
+RUN adduser -D -u 1000 appuser
+
 WORKDIR /app
 
 # Copy application files
-COPY . /app
+COPY --chown=appuser:appuser . /app
+
+# Use production env file
+RUN if [ -f .env.production ]; then cp .env.production .env; fi
 
 # Install dependencies (production only)
 RUN composer install --no-dev --optimize-autoloader --no-interaction
 
-# Set directory permissions
-RUN chown -R www-data:www-data /app/storage /app/bootstrap/cache \
+# Set permissions
+RUN chown -R appuser:appuser /app \
     && chmod -R 775 /app/storage /app/bootstrap/cache
 
-# Expose default port
+USER appuser
+
+# Expose ports
+EXPOSE 7860
 EXPOSE 8080
 
-# Run Laravel
-CMD ["sh", "-c", "php artisan config:clear && php artisan route:clear && php artisan serve --host=0.0.0.0 --port=${PORT:-8080}"]
-
+# Run Laravel on PORT (default 7860)
+CMD ["sh", "-c", "php artisan config:clear && php artisan route:clear && php artisan serve --host=0.0.0.0 --port=${PORT:-7860}"]
