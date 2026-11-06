@@ -1,0 +1,31 @@
+services:
+  - type: web
+    name: simba-syariah-api
+    runtime: docker
+    plan: free
+    region: singapore
+    envVars:
+      - key: APP_NAME
+        value: "SIMBA Syariah"
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: "false"
+      - key: APP_KEY
+        value: base64:9dOH7qcQllFdRj/C10ruj4Bri2zRAjMdEKqApkVf85A=
+      - key: APP_URL
+        value: https://simba-syariah-api.onrender.com
+      - key: DB_CONNECTION
+        value: pgsql
+      - key: DB_HOST
+        value: aws-0-ap-southeast-1.pooler.supabase.com
+      - key: DB_PORT
+        value: "5432"
+      - key: DB_DATABASE
+        value: postgres
+      - key: DB_USERNAME
+        value: postgres.kirxwdtorlilwdnvozpj
+      - key: DB_PASSWORD
+        value: "Exyakuza28!?"
+      - key: DB_SSLMODE
+        value: require

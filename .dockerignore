@@ -1,0 +1,9 @@
+/vendor
+/node_modules
+/.git
+/.phpunit.result.cache
+.env
+.env.backup
+.env.production
+.vscode
+.idea
