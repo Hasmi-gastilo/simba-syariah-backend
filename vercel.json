@@ -20,7 +20,7 @@
   "env": {
     "APP_NAME": "SIMBA Syariah",
     "APP_ENV": "production",
-    "APP_DEBUG": "false",
+    "APP_DEBUG": "true",
     "APP_KEY": "base64:9dOH7qcQllFdRj/C10ruj4Bri2zRAjMdEKqApkVf85A=",
     "APP_STORAGE": "/tmp/storage",
     "APP_CONFIG_CACHE": "/tmp/config.php",
