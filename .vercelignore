@@ -5,3 +5,8 @@ phpunit.xml
 .phpunit.result.cache
 .env
 .env.backup
+package.json
+vite.config.js
+resources/js
+resources/css
+
