@@ -1,5 +1,15 @@
 <?php
 
+// Immediate CORS headers and preflight handling
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
+header('Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With, Accept, Origin, X-CSRF-Token');
+
+if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    http_response_code(200);
+    exit(0);
+}
+
 // Suppress deprecations in PHP 8.5
 error_reporting(E_ALL & ~E_DEPRECATED);
 ini_set('display_errors', '0');
