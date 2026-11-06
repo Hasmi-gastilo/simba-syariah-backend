@@ -29,3 +29,4 @@ services:
         value: "Exyakuza28!?"
       - key: DB_SSLMODE
         value: require
+
