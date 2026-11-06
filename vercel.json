@@ -1,5 +1,8 @@
 {
   "version": 2,
+  "framework": null,
+  "buildCommand": "echo 'No build required'",
+  "installCommand": "echo 'No install required'",
   "outputDirectory": "public",
   "functions": {
     "api/index.php": {
